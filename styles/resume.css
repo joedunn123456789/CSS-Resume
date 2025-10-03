@@ -1,0 +1,9 @@
+/* Example: tighten spacing for PDF export */
+@media print {
+  body {
+    font-size: 0.9rem;
+  }
+  .section {
+    margin-bottom: var(--space-md);
+  }
+}

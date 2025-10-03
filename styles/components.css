@@ -1,0 +1,31 @@
+.resume-header {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+
+.resume-header h1 {
+  margin-bottom: var(--space-xs);
+}
+
+.job {
+  margin-bottom: var(--space-md);
+}
+
+.job h3 {
+  margin-bottom: var(--space-xs);
+  color: var(--color-accent);
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-sm);
+}
+
+.skill-tag {
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+}

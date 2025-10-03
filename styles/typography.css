@@ -1,0 +1,20 @@
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.5rem; border-bottom: 2px solid var(--color-accent); padding-bottom: var(--space-xs); }
+h3 { font-size: 1.25rem; }
+p, li { margin-bottom: var(--space-sm); }
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
