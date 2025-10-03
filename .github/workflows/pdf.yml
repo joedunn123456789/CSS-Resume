@@ -17,13 +17,11 @@ jobs:
 
       - name: Generate PDF from HTML
         run: |
-          mkdir -p assets
-          wkhtmltopdf index.html assets/resume.pdf
+          mkdir -p output
+          wkhtmltopdf index.html output/resume.pdf
 
-      - name: Commit PDF back to repo
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add assets/resume.pdf
-          git commit -m "Update resume.pdf" || echo "No changes to commit"
-          git push
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdf
+          path: output/resume.pdf
