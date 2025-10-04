@@ -15,11 +15,13 @@ jobs:
       - name: Install wkhtmltopdf
         run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
 
-      - name: Generate PDF from HTML
+      - name: Generate PDF from GitHub Pages
         run: |
           mkdir -p output
-          wkhtmltopdf index.html output/resume.pdf
-          wkhtmltopdf --enable-local-file-access index.html output/resume.pdf
+          # Replace with your actual Pages URL
+          wkhtmltopdf --enable-local-file-access \
+            https://joedunn123456789.github.io/CSS-Resume/ \
+            output/resume.pdf
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
