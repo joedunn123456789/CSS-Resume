@@ -19,7 +19,7 @@ Download the latest PDF: [resume.pdf](https://joedunn123456789.github.io/CSS-Res
 ## 🛠️ Tech Stack
 
 - HTML5
-- Bootstrap5 (modular)
+- Bootstrap5
 - CSS3 (modular, tokenized)
 - GitHub Actions (PDF automation)
 - GitHub Pages (deployment)
