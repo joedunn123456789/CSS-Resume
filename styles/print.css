@@ -1,0 +1,47 @@
+/* print.css */
+
+/* Hide elements that don't belong in the PDF */
+@media print {
+  .btn,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* Reset background colors (saves ink, looks cleaner) */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  /* Page margins for PDF */
+  @page {
+    margin: 1in;
+  }
+
+  /* Headings look sharp in print */
+  h1, h2, h3 {
+    color: #000 !important;
+    page-break-after: avoid;
+  }
+
+  /* Avoid breaking job entries across pages */
+  .job {
+    page-break-inside: avoid;
+    margin-bottom: 1.2em;
+  }
+
+  /* Skills list: compact grid for print */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+  }
+  .skill-tag {
+    border: 1px solid #000;
+    padding: 0.2em 0.4em;
+    font-size: 9pt;
+  }
+}
