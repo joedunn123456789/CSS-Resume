@@ -1,4 +1,25 @@
 @media print {
+  /* Hide non-essential UI */
+  .btn,
+  nav,
+  footer {
+    display: none !important;
+  }
+
+  /* Reset background and text for clarity */
+  body {
+    background: #fff !important;
+    color: #000 !important;
+    font-size: 11pt;
+    line-height: 1.4;
+    font-family: "Times New Roman", Georgia, serif;
+  }
+
+  /* Page margins */
+  @page {
+    margin: 1in;
+  }
+
   /* Headings */
   h1, h2, h3, h4 {
     color: #000 !important;
@@ -6,37 +27,55 @@
     margin-top: 0.8em;
     margin-bottom: 0.3em;
 
-    /* Let wkhtmltopdf break naturally */
-    page-break-after: avoid;
-    page-break-before: auto;
-    page-break-inside: avoid;
-  }
-
-  /* Keep heading with first element only */
-  h2 + *, h3 + *, h4 + * {
-    page-break-before: avoid;
-    page-break-inside: avoid;
+    /* Allow continuous flow */
+    page-break-before: auto !important;
+    page-break-after: auto !important;
+    page-break-inside: auto !important;
   }
 
   /* Sections: allow breaking */
   .section {
-    page-break-inside: auto !important; /* critical change */
+    page-break-inside: auto !important;
+    margin-bottom: 1.2em;
   }
 
-  /* Jobs: keep each job together */
+  /* Jobs: allow breaking inside */
   .job {
-    page-break-inside: avoid;
+    page-break-inside: auto !important;
     margin-bottom: 1em;
   }
 
-  /* Lists: don’t split bullets */
+  /* Lists */
+  ul, ol {
+    margin-left: 1.2em;
+    list-style-type: disc;
+  }
   li {
-    page-break-inside: avoid;
+    margin-bottom: 0.3em;
+    page-break-inside: auto !important;
   }
 
-  /* Manual page break utility */
+  /* Skills grid */
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3em;
+  }
+  .skill-tag {
+    border: 1px solid #000;
+    padding: 0.2em 0.4em;
+    font-size: 9pt;
+  }
+
+  /* Links: plain text */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  /* Remove manual page-break utility */
   .page-break {
-    page-break-before: always;
-    break-before: page;
+    page-break-before: auto !important;
+    break-before: auto !important;
   }
 }
