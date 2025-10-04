@@ -1,39 +1,58 @@
-/* print.css */
+/* Print-optimized stylesheet for résumé */
 
-/* Hide elements that don't belong in the PDF */
 @media print {
+  /* Hide non-essential UI */
   .btn,
   nav,
   footer {
     display: none !important;
   }
 
-  /* Reset background colors (saves ink, looks cleaner) */
+  /* Reset background and text for clarity */
   body {
     background: #fff !important;
     color: #000 !important;
     font-size: 11pt;
     line-height: 1.4;
+    font-family: "Times New Roman", Georgia, serif; /* recruiter-friendly */
   }
 
-  /* Page margins for PDF */
+  /* Page margins */
   @page {
     margin: 1in;
   }
 
-  /* Headings look sharp in print */
+  /* Headings */
   h1, h2, h3 {
     color: #000 !important;
+    font-weight: bold;
+    margin-top: 0.8em;
+    margin-bottom: 0.3em;
     page-break-after: avoid;
   }
 
-  /* Avoid breaking job entries across pages */
-  .job {
+  /* Section spacing */
+  .section {
     page-break-inside: avoid;
     margin-bottom: 1.2em;
   }
 
-  /* Skills list: compact grid for print */
+  /* Job entries */
+  .job {
+    page-break-inside: avoid;
+    margin-bottom: 1em;
+  }
+
+  /* Lists */
+  ul, ol {
+    margin-left: 1.2em;
+    list-style-type: disc;
+  }
+  li {
+    margin-bottom: 0.3em;
+  }
+
+  /* Skills grid */
   .skills-list {
     display: flex;
     flex-wrap: wrap;
@@ -43,5 +62,11 @@
     border: 1px solid #000;
     padding: 0.2em 0.4em;
     font-size: 9pt;
+  }
+
+  /* Links: show plain text, no underlines */
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
   }
 }
