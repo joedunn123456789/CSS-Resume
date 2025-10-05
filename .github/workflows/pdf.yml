@@ -1,4 +1,4 @@
-name: Generate Resume PDF
+name: generate-resume-pdf
 
 on:
   push:
@@ -15,20 +15,40 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Install wkhtmltopdf
-        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
 
-      - name: Generate PDF from GitHub Pages
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Generate PDF
         run: |
           mkdir -p assets
-          wkhtmltopdf --enable-local-file-access \
-            https://joedunn123456789.github.io/CSS-Resume/ \
-            assets/resume.pdf
+          node -e "
+          const puppeteer = require('puppeteer');
+          (async () => {
+            const browser = await puppeteer.launch({args: ['--no-sandbox', '--disable-setuid-sandbox']});
+            const page = await browser.newPage();
+            await page.goto('https://joedunn123456789.github.io/CSS-Resume/', {waitUntil: 'networkidle0'});
+            await page.pdf({
+              path: 'assets/resume.pdf', 
+              format: 'Letter', 
+              printBackground: true, 
+              margin: {
+                top: '0in', 
+                right: '0in', 
+                bottom: '0in', 
+                left: '0in'
+              }
+            });
+            await browser.close();
+          })();
+          "
 
-      - name: Commit PDF back to repo
-        run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
-          git add assets/resume.pdf
-          git commit -m "Auto-update resume.pdf" || echo "No changes to commit"
-          git push
+      - name: Commit PDF
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "Auto-update resume.pdf"
+          file_pattern: assets/resume.pdf
