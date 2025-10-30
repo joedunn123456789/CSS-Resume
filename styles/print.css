@@ -1,23 +1,142 @@
 @media print {
-  /* Hide ONLY the download button and keep everything else exactly as is */
-  .btn-download,
-  .download-button,
-  .download-pdf,
-  #download-pdf,
+  /* Page setup */
+  @page {
+    margin: 0;
+    size: letter;
+  }
+
+  /* Force background colors and gradients to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  /* Hide interactive elements */
+  .download-container,
+  .download-btn,
+  .theme-toggle-input,
+  .theme-toggle-label,
   [class*="download"],
   [id*="download"] {
     display: none !important;
   }
 
-  /* Remove the @page margins since you want zero margins */
-  @page {
+  /* Reset body for print */
+  body {
+    background: white !important;
     margin: 0;
+    padding: 0;
   }
 
-  /* Keep all your original styling - don't override colors, fonts, etc. */
-  /* Only force background printing */
-  * {
-    -webkit-print-color-adjust: exact !important;
-    print-color-adjust: exact !important;
+  /* Container adjustments */
+  .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0.5in;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: white !important;
+  }
+
+  /* Disable animations and transitions */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Reset transforms */
+  .fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Header adjustments */
+  .resume-header {
+    padding: 0 0 var(--space-lg) 0;
+    margin-bottom: var(--space-xl);
+  }
+
+  .header-background {
+    display: none;
+  }
+
+  /* Fix gradient text for print */
+  h1 {
+    -webkit-text-fill-color: initial !important;
+    background: none !important;
+    color: var(--color-text) !important;
+  }
+
+  /* Ensure proper spacing */
+  .section {
+    page-break-inside: avoid;
+    margin-bottom: var(--space-xl);
+  }
+
+  .job {
+    page-break-inside: avoid;
+  }
+
+  /* Remove hover effects */
+  .summary-item:hover,
+  .skill-tag:hover,
+  .cert-badge:hover,
+  .job:hover,
+  .education-item:hover {
+    transform: none !important;
+    box-shadow: inherit !important;
+  }
+
+  /* Timeline dots for print */
+  .timeline-dot {
+    transform: none !important;
+    box-shadow: 0 0 0 3px var(--color-border) !important;
+  }
+
+  /* Links should look like normal text in print */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a::after {
+    display: none;
+  }
+
+  /* Ensure borders print */
+  .summary-item,
+  .cert-badge,
+  .job {
+    border-color: #333 !important;
+  }
+
+  /* Skills and certs grid adjustments */
+  .skills-grid,
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: var(--space-sm) !important;
+  }
+
+  .skill-tag,
+  .cert-badge {
+    padding: var(--space-xs) var(--space-sm) !important;
+    font-size: var(--font-size-sm) !important;
+  }
+
+  /* Compact spacing for print */
+  h2 {
+    margin-bottom: var(--space-md) !important;
+    padding-bottom: var(--space-xs) !important;
+  }
+
+  p, li {
+    margin-bottom: var(--space-xs) !important;
+  }
+
+  ul {
+    margin-bottom: var(--space-md) !important;
   }
 }
